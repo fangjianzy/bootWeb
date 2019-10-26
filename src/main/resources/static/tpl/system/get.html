@@ -1,0 +1,46 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>授权获得 booAdmin</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+  <div class="layui-fluid"> 
+    <div class="layui-row layadmin-panel-selection">
+      <div class="layui-col-sm12">
+        <div class="layui-panel-window layui-text">
+          <h2>专业版</h2>
+          <ul>
+            <li>始终基于全新的 layui 版本</li>
+            <li>单页面应用，所有操作无需跳转</li>
+            <li>支持前后端分离开发模式</li>
+            <li>面向全屏幕尺寸的响应式适配能力</li>
+            <li>灵活的主题色配置</li>
+          </ul>
+          
+        </div>
+      </div>
+      <blockquote class="layui-col-sm12 layui-elem-quote" style="margin-top: 15px;">
+       	完美后台管理系统
+      </blockquote>
+    </div>
+  </div>
+  
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index']);
+  </script>
+</body>
+</html>

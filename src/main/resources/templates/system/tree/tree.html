@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>树状结构</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+</head>
+<body>
+
+<div class="layui-row">
+    <div class="layui-col-md2">
+        <ul id="menuTree"></ul>
+    </div>
+    <div class="layui-col-md10">
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">菜单资源列表</div>
+                        <div class="layui-card-body">
+
+                            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">菜单名称</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="name" placeholder="请输入" autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">链接地址</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="url" placeholder="请输入" autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <button class="layui-btn layuiadmin-btn-list" lay-submit
+                                                lay-filter="layui-app-search">
+                                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table class="layui-hide" id="tableList" lay-filter="tableList"></table>
+
+                            <script type="text/html" id="toolbarDemo">
+                                <div class="layui-btn-container">
+                                    <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="edit">修改</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="Del">删除</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="View">查看</button>
+                                </div>
+                            </script>
+
+                            <script type="text/html" id="barDemo">
+                                <a class="layui-btn layui-btn-xs" lay-event="toedit">编辑</a>
+                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="todel">删除</a>
+                            </script>
+
+
+                            <script type="text/html" id="titleTypeTpl">
+                                {{#  if(d.type ==1){ }}
+                                模块
+                                {{#  } else if(d.type ==2) { }}
+                                菜单
+                                {{#  } else { }}
+                                资源
+                                {{#  } }}
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<input id="treeDateID" type="hidden" th:value="${menutree}">
+<script src="/layui/layui.js" charset="utf-8"></script>
+<script src="/lib/jquery-2.1.1.min.js" charset="utf-8"></script>
+<script>
+    //Demo
+    layui.use(['tree', 'table', 'layer'], function () {//layui 模块引用，根据需要自行修改
+        var layer = layui.layer,
+            table = layui.table,
+            tree = layui.tree,
+            $ = layui.$,
+            form = layui.form;
+        var nodeid = 0;
+        var jsonDate = $("#treeDateID").val();
+
+        $(function () {
+            getMenuTree();
+        });
+
+        function getMenuTree() {
+            $.ajax({
+                url: "/sys/menu/permission/tree",
+                type: "GET",
+                success: function (obj) {
+                    renderMenuTree(obj);
+                }
+            });
+        }
+
+        function renderMenuTree(data) {
+            var inst = tree.render({
+                elem: '#menuTree'  //绑定元素
+                , id: 'menuTree'
+                ,accordion:true
+                ,onlyIconControl:true
+                , data: data
+                , click: function (obj) {
+                    var item = obj.data;
+                    reloadTable(item.id);
+                    nodeid = item.id;
+                }
+            });
+        }
+
+
+        //格式化处理成layUI支持的tree格式
+        function createJsonTree(jsondata) {
+            var data = $.parseJSON(jsondata);
+            var node = [];
+            node.push(data)
+            return node;
+        }
+        //表刷新方法
+        var reloadTable = function (pid) {
+            table.reload("tableList", { //此处是table中tableList的id
+                where: {
+                    parentId: pid
+                }
+            });
+        };
+
+        //监听搜索
+        form.on('submit(layui-app-search)', function (data) {
+            var field = data.field;
+
+            //执行重载
+            table.reload('tableList', {
+                where: field
+            });
+        });
+
+        table.render({
+            elem: '#tableList'  //table的Id
+            , url: '/sys/menu/list'  //前期地址
+            , toolbar: '#toolbarDemo' //工具条
+            , method: 'get' //请求方式
+            , limit: 10 //默认采用10条
+            , title: '菜单资源表' //表头
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , cols: [
+                [
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'menuId', title: 'ID', fixed: 'left', width: 100}
+                    , {field: 'name', title: '资源名称',}
+                    , {field: 'url', title: '资源访问地址',}
+                    , {
+                    field: 'type', title: '类型', sort: true
+                    , templet: function (d) {
+                        if (d.type == 1) {
+                            return '<span style="color: #110f0f;">模块</span>'
+                        } else if (d.type == 2) {
+                            return '<span style="color: #0808e4;">菜单</span>'
+                        } else {
+                            return '<span style="color: #ff0000;">按钮</span>'
+                        }
+                    }
+                }
+                    , {field: 'orderNum', title: '排序'}
+                    , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
+                ]
+            ]
+            , page: true
+            , request: {
+                pageName: 'pageNum' //页码的参数名称，默认：page
+                , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+
+            }
+            , response: {
+                countName: 'total' //规定数据总数的字段名称，默认：count
+                , dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+        });
+
+        //头工具栏事件
+        table.on('toolbar(tableList)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'add':
+                    layer.open({
+                        type: 2
+                        , title: '添加菜单'
+                        , content: '/sys/menu/add/' + nodeid
+                        , maxmin: true
+                        , area: ['550px', '550px']
+                        , btn: ['确定', '取消']
+                        , yes: function (index, layero) {
+                            //点击确认触发 iframe 内容中的按钮提交
+                            var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-submit");
+                            submit.click();
+                        }
+                    });
+                    break;
+                case 'edit':
+                    var data = checkStatus.data;
+                    if (data.length === 0) {
+                        return layer.msg('请选择数据');
+                    } else if (data.length === 1) {
+                        layer.open({
+                            type: 2
+                            , title: '修改资源'
+                            , content: '/sys/menu/edit/' + data[0].menuId
+                            , maxmin: true
+                            , area: ['550px', '550px']
+                            , btn: ['确定', '取消']
+                            , yes: function (index, layero) {
+                                //点击确认触发 iframe 内容中的按钮提交
+                                var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
+                                submit.click();
+                            }
+                        });
+                    } else {
+                        layer.msg('暂不支持批量修改');
+                    }
+                    break;
+                case 'Del':
+                    var data = checkStatus.data;
+                    //var jsonData = JSON.stringify(data);
+                    //console.log('data', data)
+                    if (data.length == 0) {
+                        return layer.msg('请选择数据');
+                    } else if (data.length == 1) {
+                        layer.confirm('确定删除吗？', function (index) {
+                            console.log('根据ID删除' + data[0].userId);//测试是否获取到表单数据，调试模式下在页面控制台查看
+                            $.ajax({
+                                url: "/sys/menu/remove?id=" + data[0].menuId,
+                                type: 'post',//method请求方式，get或者post
+                                dataType: 'json',//预期服务器返回的数据类型
+                                contentType: "application/json; charset=utf-8",
+                                success: function (res) {//res为相应体,function为回调函数
+                                    if (res.code == 0) {
+                                        console.log('操作成功');//测试是否获取到表单数据，调试模式下在页面控制台查看
+                                        //$("#res").click();//调用重置按钮将表单数据清空
+                                        table.reload('tableList');
+                                        layer.msg('已删除');
+                                    } else {
+                                        console.log('保存失败');
+                                    }
+                                },
+                                error: function () {
+                                    layer.alert('操作失败！！！', {icon: 5});
+                                }
+                            });
+                            //return false;
+                        });
+                    } else {
+                        layer.msg('确定批量删除?');
+                    }
+                    break;
+                case 'View':
+                    var data = checkStatus.data;
+                    if (data.length == 0) {
+                        return layer.msg('请选择数据');
+                    } else if (data.length == 1) {
+                        layer.open({
+                            type: 2
+                            , title: '修改资源'
+                            , content: '/sys/menu/edit/' + data[0].menuId
+                            , maxmin: true
+                            , area: ['550px', '550px']
+                            , btn: ['确定', '取消']
+                            , yes: function (index, layero) {
+                                //点击确认触发 iframe 内容中的按钮提交
+                                var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
+                                //submit.click();
+                                //var indexOpen = layer.open();
+                                layer.close(layer.index); //它获取的始终是最新弹出的某个层，值是由layer内部动态递增计算的
+                            }
+                        });
+                    } else {
+                        layer.msg('暂不支持批量查看');
+                    }
+                    break;
+            }
+            ;
+        });
+
+        //监听行工具事件
+        table.on('tool(tableList)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event == 'todel') {
+                layer.confirm('真的删除行么', function (index) {
+                    $.ajax({
+                        url: "/sys/menu/remove?id=" + data.menuId,
+                        type: 'post',//method请求方式，get或者post
+                        dataType: 'json',//预期服务器返回的数据类型
+                        contentType: "application/json; charset=utf-8",
+                        success: function (res) {//res为相应体,function为回调函数
+                            if (res.code == 0) {
+                                console.log('操作成功');//测试是否获取到表单数据，调试模式下在页面控制台查看
+                                //$("#res").click();//调用重置按钮将表单数据清空
+                                table.reload('tableList');
+                                layer.msg('已删除');
+                            } else {
+                                console.log('保存失败');
+                            }
+                        },
+                        error: function () {
+                            layer.alert('操作失败！！！', {icon: 5});
+                        }
+                    });
+                    obj.del();
+                    layer.close(index);
+                    
+                });
+            } else if (obj.event === 'toedit') {
+                layer.open({
+                    type: 2
+                    , title: '修改资源'
+                    , content: '/sys/menu/edit/' + data.menuId
+                    , maxmin: true
+                    , area: ['550px', '550px']
+                    , btn: ['确定', '取消']
+                    , yes: function (index, layero) {
+                        //点击确认触发 iframe 内容中的按钮提交
+                        var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
+                        submit.click();
+                    }
+                });
+                layer.close(index);
+                table.reload('tableList');
+            }
+        });
+    });
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>部门树状结构</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+</head>
+<body>
+
+<div class="layui-row">
+    <div class="layui-col-md2">
+        <div id="deptTree"></div>
+    </div>
+    <div class="layui-col-md10">
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">部门资源列表</div>
+                        <div class="layui-card-body">
+
+                            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">部门名称</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="name" placeholder="请输入" autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="layui-inline">
+                                        <button class="layui-btn layuiadmin-btn-list" lay-submit
+                                                lay-filter="layui-app-search">
+                                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table class="layui-hide" id="tableList" lay-filter="tableList"></table>
+
+                            <script type="text/html" id="toolbarDemo">
+                                <div class="layui-btn-container">
+                                    <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="edit">修改</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="Del">删除</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="View">查看</button>
+                                </div>
+                            </script>
+
+                            <script type="text/html" id="barDemo">
+                                <a class="layui-btn layui-btn-xs" lay-event="toedit">编辑</a>
+                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="todel">删除</a>
+                            </script>
+
+
+                            <script type="text/html" id="titleTypeTpl">
+                                {{#  if(d.type ==1){ }}
+                                模块
+                                {{#  } else if(d.type ==2) { }}
+                                菜单
+                                {{#  } else { }}
+                                资源
+                                {{#  } }}
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="/layui/layui.js" charset="utf-8"></script>
+<script src="/lib/jquery-2.1.1.min.js" charset="utf-8"></script>
+<script>
+    //Demo
+    layui.use(['tree', 'table', 'layer'], function () {//layui 模块引用，根据需要自行修改
+        var layer = layui.layer,
+            table = layui.table,
+            tree = layui.tree,
+            $ = layui.$,
+            form = layui.form;
+        var nodeid = 0;
+        $(function(){
+            getDeptTree();
+        });
+
+        function getDeptTree(){
+            $.ajax({
+                url:"/system/sysDept/listTree",
+                data:{},
+                type:"GET",
+                success:function(obj){
+                    renderDeptTree(obj);
+                }
+            });
+        }
+        function renderDeptTree(data) {
+            var inst = tree.render({
+                elem: '#deptTree'  //绑定元素
+                ,id: 'deptTree'
+                ,onlyIconControl:true
+                ,data: data
+                ,click: function (obj) {
+                    var item = obj.data;
+                    reloadTable(item.id);
+                    nodeid = item.id;
+                }
+            });
+        }
+
+        /*
+          layui.tree({
+             elem: '#deptTree' //指定元素
+            ,target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
+            ,click: function(item){
+                //点击节点回调
+              //layer.msg('当前节名称：'+ item.name + '<br>全部参数：'+ JSON.stringify(item));
+              //console.log(item);
+                reloadTable(item.id);
+                nodeid = item.id;
+            }
+            ,nodes: createJsonTree(jsonDate)
+          });
+        */
+
+
+        //格式化处理成layUI支持的tree格式
+        function createJsonTree(jsondata) {
+            var data = $.parseJSON(jsondata);
+            var node = [];
+            node.push(data)
+            return node;
+        }
+
+
+        //表刷新方法
+        var reloadTable = function (pid) {
+            table.reload("tableList", { //此处是table中tableList的id
+                where: {
+                    parentId: pid
+                }
+            });
+        };
+
+
+        //监听搜索
+        form.on('submit(layui-app-search)', function (data) {
+            var field = data.field;
+
+            //执行重载
+            table.reload('tableList', {
+                where: field
+            });
+        });
+
+        table.render({
+            elem: '#tableList'  //table的Id
+            , url: '/system/sysDept/list'  //前期地址
+            , toolbar: '#toolbarDemo' //工具条
+            , method: 'get' //请求方式
+            , limit: 10 //默认采用10条
+            , title: '部门管理' //表头
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , cols: [
+                [
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'deptId', title: 'ID', fixed: 'left', width: 100}
+                    , {field: 'name', title: '部门名称',}
+                    , {field: 'deptHeadName', title: '部门负责人',}
+                    , {field: 'orderNum', title: '排序',}
+                    , {
+                    field: 'delFlag', title: '是否正常', sort: true
+                    , templet: function (d) {
+                        if (d.delFlag = -1) {
+                            return '<span style="color: #110f0f;">已删除</span>'
+                        } else if (d.delFlag == 0) {
+                            return '<span style="color: #0808e4;">正常</span>'
+                        } else {
+                            return '<span style="color: #ff0000;">未知</span>'
+                        }
+                    }
+                }
+                    , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
+                ]
+            ]
+            , page: true
+            , request: {
+                pageName: 'pageNum' //页码的参数名称，默认：page
+                , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+
+            }
+            , response: {
+                countName: 'total' //规定数据总数的字段名称，默认：count
+                , dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+        });
+
+        //头工具栏事件
+        table.on('toolbar(tableList)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'add':
+                    layer.open({
+                        type: 2
+                        , title: '添加部门'
+                        , content: '/system/sysDept/add/' + nodeid
+                        , maxmin: true
+                        , area: ['550px', '550px']
+                        , btn: ['确定', '取消']
+                        , yes: function (index, layero) {
+                            //点击确认触发 iframe 内容中的按钮提交
+                            var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-submit");
+                            submit.click();
+                        }
+                    });
+                    break;
+                case 'edit':
+                    var data = checkStatus.data;
+                    if (data.length == 0) {
+                        return layer.msg('请选择数据');
+                    } else if (data.length == 1) {
+                        layer.open({
+                            type: 2
+                            , title: '修改部门'
+                            , content: '/system/sysDept/edit/' + data[0].deptId
+                            , maxmin: true
+                            , area: ['550px', '550px']
+                            , btn: ['确定', '取消']
+                            , yes: function (index, layero) {
+                                //点击确认触发 iframe 内容中的按钮提交
+                                var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
+                                submit.click();
+                            }
+                        });
+                    } else {
+                        layer.msg('暂不支持批量修改');
+                    }
+                    break;
+                case 'Del':
+                    var data = checkStatus.data;
+                    //var jsonData = JSON.stringify(data);
+                    //console.log('data', data)
+                    if (data.length == 0) {
+                        return layer.msg('请选择数据');
+                    } else if (data.length == 1) {
+                        layer.confirm('确定删除吗？', function (index) {
+                            console.log('根据ID删除' + data[0].deptId);//测试是否获取到表单数据，调试模式下在页面控制台查看
+                            $.ajax({
+                                url: "/system/sysDept/remove?deptId=" + data[0].deptId,
+                                type: 'post',//method请求方式，get或者post
+                                dataType: 'json',//预期服务器返回的数据类型
+                                contentType: "application/json; charset=utf-8",
+                                success: function (res) {//res为相应体,function为回调函数
+                                    if (res.code == 0) {
+                                        console.log('操作成功');//测试是否获取到表单数据，调试模式下在页面控制台查看
+                                        //$("#res").click();//调用重置按钮将表单数据清空
+                                        table.reload('tableList');
+                                        layer.msg('已删除');
+                                    } else {
+                                        console.log('删除失败');
+                                    }
+                                },
+                                error: function () {
+                                    layer.alert('操作失败！！！', {icon: 5});
+                                }
+                            });
+                            //return false;
+                        });
+                    } else {
+                        layer.msg('确定批量删除?');
+                    }
+                    break;
+                case 'View':
+                    var data = checkStatus.data;
+                    if (data.length == 0) {
+                        return layer.msg('请选择数据');
+                    } else if (data.length == 1) {
+                        layer.open({
+                            type: 2
+                            , title: '修改部门'
+                            , content: '/system/sysDept/edit/' + data[0].deptId
+                            , maxmin: true
+                            , area: ['550px', '550px']
+                            , btn: ['确定', '取消']
+                            , yes: function (index, layero) {
+                                //点击确认触发 iframe 内容中的按钮提交
+                                var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
+                                //submit.click();
+                                //var indexOpen = layer.open();
+                                layer.close(layer.index); //它获取的始终是最新弹出的某个层，值是由layer内部动态递增计算的
+                            }
+                        });
+                    } else {
+                        layer.msg('暂不支持批量查看');
+                    }
+                    break;
+            }
+            ;
+        });
+
+        //监听行工具事件
+        table.on('tool(tableList)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event == 'todel') {
+                layer.confirm('真的删除行么', function (index) {
+                    $.ajax({
+                        url: "/system/sysDept/remove?deptId=" + data.deptId,
+                        type: 'post',//method请求方式，get或者post
+                        dataType: 'json',//预期服务器返回的数据类型
+                        contentType: "application/json; charset=utf-8",
+                        success: function (res) {//res为相应体,function为回调函数
+                            if (res.code == 0) {
+                                console.log('操作成功');//测试是否获取到表单数据，调试模式下在页面控制台查看
+                                //$("#res").click();//调用重置按钮将表单数据清空
+                            } else {
+                                console.log('删除失败');
+                            }
+                        },
+                        error: function () {
+                            layer.alert('操作失败！！！', {icon: 5});
+                        }
+                    });
+                    obj.del();
+                    layer.close(index);
+                    table.reload('tableList');
+                    layer.msg('已删除');
+                });
+            } else if (obj.event == 'toedit') {
+                layer.open({
+                    type: 2
+                    , title: '修改部门'
+                    , content: '/system/sysDept/edit/' + data.deptId
+                    , maxmin: true
+                    , area: ['550px', '550px']
+                    , btn: ['确定', '取消']
+                    , yes: function (index, layero) {
+                        //点击确认触发 iframe 内容中的按钮提交
+                        var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
+                        submit.click();
+                    }
+                });
+                layer.close(index);
+                table.reload('tableList');
+            }
+        });
+    });
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+package ${package}.service;
+
+import ${package}.domain.${className}DO;
+import com.jimmy.framework.core.common.entity.PageDO;
+import com.jimmy.framework.core.common.utils.PageUtils;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Service {
+	
+	/**
+	 *根据ID获取对象
+	*/
+	${className}DO get(${pk.attrType} ${pk.attrname});
+	
+	/**
+	 *根据列表对象
+	*/
+	List<${className}DO> list(Map<String, Object> map);
+	
+	/**
+	 *获取列表对象数据，主用于分页
+	*/
+	int count(Map<String, Object> map);
+	
+	/**
+	 *保存对象
+	*/
+	int save(${className}DO ${classname});
+	
+	/**
+	 *更新对象
+	*/
+	int update(${className}DO ${classname});
+	
+	/**
+	 *删除对象
+	*/
+	int remove(${pk.attrType} ${pk.attrname});
+	
+	/**
+	 *批量删除对象
+	*/
+	int batchRemove(${pk.attrType}[] ${pk.attrname}s);
+	
+	/**
+	* 高度整合分页方式
+	*/
+	PageDO<${className}DO> queryPageList(Map<String, Object> query);
+}

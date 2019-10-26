@@ -1,0 +1,73 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello queue（点对点通讯）</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/style/admin.css" media="all">
+    <script src="/layui/layui.js"></script>
+    <script src="/js/webSocket/sockjs.min.js"></script>
+  	<script src="/js/webSocket/stomp.min.js"></script>
+  	<script src="/js/webSocket/jquery.js"></script>  
+    <script type="text/javascript">
+        var stompClient = null;
+        function setConnected(connected){
+            document.getElementById("connect").disabled = connected;
+            document.getElementById("disconnect").disabled = !connected;
+            $("#response").html();
+        }
+        function connect() {
+            var socket = new SockJS("/queueServer");
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function(frame) {
+                setConnected(true);
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/user/'+document.getElementById('user').value+'/message', function(response){
+                    var response1 = document.getElementById('response');
+                    var p = document.createElement('p');
+                    p.style.wordWrap = 'break-word';
+                    p.appendChild(document.createTextNode(response.body));
+                    response1.appendChild(p);
+                });
+            });
+        }
+
+        function disconnect() {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+            setConnected(false);
+            console.log("Disconnected");
+        }
+        
+        function sendName() {
+            var name = document.getElementById('touser').value;
+            stompClient.send("/queue", {}, JSON.stringify({ 'name': name}));
+        }
+        
+        function sendP2PName() {
+        	var fromuser = document.getElementById('user').value;
+            var touser = document.getElementById('touser').value;
+            var msg = document.getElementById('msg').value;
+            stompClient.send("/p2p/"+fromuser+"/"+touser, {}, JSON.stringify({ 'name': msg}));
+        }
+    </script>
+</head>
+<body onload="disconnect()">
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<div>
+    <div>
+        <labal>登陆用户</labal><input type="text" id="user" value="zhangsan"/>
+        <button id="connect" onclick="connect();">Connect</button>
+        <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+    </div>
+    <div id="conversationDiv">
+        <labal>发送到</labal><input type="text" id="touser" />
+        <labal>信息</labal><input type="text" id="msg" />
+        <button id="sendName" onclick="sendP2PName();">Send</button>
+        <p id="response"></p>
+    </div>
+</div>
+
+</body>
+</html>

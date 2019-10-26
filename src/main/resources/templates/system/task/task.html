@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>-列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/style/admin.css" media="all">
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+  
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">列表</div>
+          <div class="layui-card-body">
+            
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+               
+               
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="layui-app-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+           </div>
+          
+            <table class="layui-hide" id="tableList" lay-filter="tableList"></table>
+            
+            <script type="text/html" id="toolbarDemo">
+			  <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+                <button class="layui-btn layui-btn-sm" lay-event="edit">修改</button>
+				<button class="layui-btn layui-btn-sm" lay-event="Del">删除</button>
+                <button class="layui-btn layui-btn-sm" lay-event="View">查看</button>
+              </div>
+            </script>
+             
+            <script type="text/html" id="barDemo">
+              <a class="layui-btn layui-btn-xs" lay-event="toedit">编辑</a>
+              <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="todel">删除</a>
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+          
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
+ 
+<script>
+  layui.use('table', function(){
+  var table = layui.table
+ 	  ,$ = layui.$
+      ,form = layui.form;
+  
+  //监听搜索
+  form.on('submit(layui-app-search)', function(data){
+      var field = data.field;
+      //执行重载
+      table.reload('tableList', {
+          where: field
+      });
+  });
+
+  table.render({
+     elem: '#tableList'  //table的Id
+    ,url:'/common/job/list'  //前期地址
+    ,toolbar: '#toolbarDemo' //工具条
+    ,method: 'get' //请求方式
+    ,limit: 10 //默认采用10条
+    ,title: '用户数据表' //表头
+    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+    ,cols: [
+      [
+       {type: 'checkbox', fixed: 'left'},
+       {field:'id', title:'主键',  fixed: 'left',width:100},
+       	   {field:'cronExpression', title:'cron表达式'},
+	   {field:'methodName', title:'任务调用的方法名'},
+	   {field:'isConcurrent', title:'任务是否有状态'},
+	   {field:'description', title:'任务描述'},
+	   {field:'updateBy', title:'更新者'},
+	   {field:'beanClass', title:'任务执行时调用哪个类的方法 包名+类名'},
+	   {field:'createDate', title:'创建时间'},
+	   {field:'jobStatus', title:'任务状态'},
+	   {field:'jobGroup', title:'任务分组'},
+	   {field:'updateDate', title:'更新时间'},
+	   {field:'createBy', title:'创建者'},
+	   {field:'springBean', title:'Spring bean'},
+	   {field:'jobName', title:'任务名'},
+	   {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+    	]
+      ]
+  	  ,page: true
+      ,request: {
+        	pageName: 'pageNum' //页码的参数名称，默认：page
+           ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+           
+      }
+  	  ,response: {
+  	      countName: 'total' //规定数据总数的字段名称，默认：count
+  	      ,dataName: 'data' //规定数据列表的字段名称，默认：data
+  	  } 
+  });
+  
+  //头工具栏事件
+  table.on('toolbar(tableList)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id);
+    switch(obj.event){
+      case 'add':
+    	  layer.open({
+              type: 2
+              ,title: '添加用户'
+              ,content: '/common/job/add'
+              ,maxmin: true
+              ,area: ['550px', '550px']
+              ,btn: ['确定', '取消']
+              ,yes: function(index, layero){
+                  //点击确认触发 iframe 内容中的按钮提交
+                  var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-submit");
+                  submit.click();
+              }
+          });
+      break;
+      case 'edit':
+        var data = checkStatus.data;
+        if(data.length == 0){
+            return layer.msg('请选择数据');
+        }else if(data.length == 1){
+        	layer.open({
+                type: 2
+                ,title: '修改信息'
+                ,content: '/common/job/edit/'+data[0].id
+                ,maxmin: true
+                ,area: ['550px', '550px']
+                ,btn: ['确定', '取消']
+                ,yes: function(index, layero){
+                    //点击确认触发 iframe 内容中的按钮提交
+                    var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
+                    submit.click();
+                }
+            });
+        }else{
+      	  layer.msg('暂不支持批量修改');
+        }
+      break;
+      case 'Del':
+    	  var data = checkStatus.data;
+    	  //var jsonData = JSON.stringify(data);
+    	  //console.log('data', data)
+    	  if(data.length == 0){
+              return layer.msg('请选择数据');
+          }else if(data.length == 1){
+        	  layer.confirm('确定删除吗？', function(index) {
+                  console.log('根据ID删除'+data[0].id);//测试是否获取到表单数据，调试模式下在页面控制台查看
+                  $.ajax({
+                      url:"/common/job/remove?id="+data[0].id,
+                      type:'post',//method请求方式，get或者post
+                      dataType:'json',//预期服务器返回的数据类型
+                      contentType: "application/json; charset=utf-8",
+                      success:function(res){//res为相应体,function为回调函数
+                        if(res.code==0){
+                        	console.log('操作成功');//测试是否获取到表单数据，调试模式下在页面控制台查看
+                          //$("#res").click();//调用重置按钮将表单数据清空
+                          table.reload('tableList');
+                          layer.msg('已删除');
+                        }else{
+                        	console.log('保存失败');
+                        }
+                      },
+                      error:function(){
+                        layer.alert('操作失败！！！',{icon:5});
+                      }
+                    });
+                    //return false;
+              });
+          }else{
+        	  layer.msg('确定批量删除?');
+          }
+      break;
+      case 'View':
+    	  var data = checkStatus.data;
+          if(data.length == 0){
+              return layer.msg('请选择数据');
+          }else if(data.length == 1){
+          	layer.open({
+                  type: 2
+                  ,title: '修改用户'
+                  ,content: '/common/job/edit/'+data[0].id
+                  ,maxmin: true
+                  ,area: ['550px', '550px']
+                  ,btn: ['确定', '取消']
+                  ,yes: function(index, layero){
+                      //点击确认触发 iframe 内容中的按钮提交
+                      var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
+                      //submit.click();
+                      //var indexOpen = layer.open();
+                      layer.close(layer.index); //它获取的始终是最新弹出的某个层，值是由layer内部动态递增计算的
+                  }
+              });
+          }else{
+        	  layer.msg('暂不支持批量查看');
+          }
+      break;
+    };
+  });
+  
+  //监听行工具事件
+  table.on('tool(tableList)', function(obj){
+    var data = obj.data;
+    //console.log(obj)
+    if(obj.event == 'todel'){
+      layer.confirm('真的删除行么', function(index){
+        $.ajax({
+            url:"/common/job/remove?id="+data.id,
+            type:'post',//method请求方式，get或者post
+            dataType:'json',//预期服务器返回的数据类型
+            contentType: "application/json; charset=utf-8",
+            success:function(res){//res为相应体,function为回调函数
+              if(res.code==0){
+              	console.log('操作成功');//测试是否获取到表单数据，调试模式下在页面控制台查看
+                //$("#res").click();//调用重置按钮将表单数据清空
+                table.reload('tableList');
+                layer.msg('已删除');
+              }else{
+              	console.log('保存失败');
+              }
+            },
+            error:function(){
+              layer.alert('操作失败！！！',{icon:5});
+            }
+          });
+        obj.del();
+        layer.close(index);
+      });
+    } else if(obj.event == 'toedit'){
+    	layer.open({
+            type: 2
+            ,title: '修改用户'
+            ,content: '/common/job/edit/'+data.id
+            ,maxmin: true
+            ,area: ['550px', '550px']
+            ,btn: ['确定', '取消']
+            ,yes: function(index, layero){
+                //点击确认触发 iframe 内容中的按钮提交
+                var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-edit");
+                submit.click();
+            }
+        });
+    	layer.close(index);
+        table.reload('tableList');
+    }
+  });
+});
+</script>
+</body>
+</html>

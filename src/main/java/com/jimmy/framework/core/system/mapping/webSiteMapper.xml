@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jimmy.framework.core.system.dao.WebSiteDao">
+
+	<select id="get" resultType="com.jimmy.framework.core.system.entity.WebSite">
+		select 
+		`id`,
+		`site_name`,
+		`site_wwwname`,
+		`cache_time`,
+		`max_filekb`,
+		`file_uploadtype`,
+		`index_title`,
+		`meta_key`,
+		`meta_info`,
+		`site_version`
+		from sys_website where id = #{value}
+	</select>
+
+	<insert id="save" parameterType="com.jimmy.framework.core.system.entity.WebSite" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_website
+		(
+		`id`,
+		`site_name`,
+		`site_wwwname`,
+		`cache_time`,
+		`max_filekb`,
+		`file_uploadtype`,
+		`index_title`,
+		`meta_key`,
+		`meta_info`,
+		`site_version`
+		)
+		values
+		(
+		#{id},
+		#{siteName},
+		#{siteWwwname},
+		#{cacheTime},
+		#{maxFilekb},
+		#{fileUploadtype},
+		#{indexTitle},
+		#{metaKey},
+		#{metaInfo},
+		#{siteVersion}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.jimmy.framework.core.system.entity.WebSite">
+		update sys_website
+		<set>
+			<if test="siteName != null">`site_name` = #{siteName}, </if>
+			<if test="siteWwwname != null">`site_wwwname` = #{siteWwwname}, </if>
+			<if test="cacheTime != null">`cache_time` = #{cacheTime}, </if>
+			<if test="maxFilekb != null">`max_filekb` = #{maxFilekb}, </if>
+			<if test="fileUploadtype != null">`file_uploadtype` = #{fileUploadtype}, </if>
+			<if test="indexTitle != null">`index_title` = #{indexTitle}, </if>
+			<if test="metaKey != null">`meta_key` = #{metaKey}, </if>
+			<if test="metaInfo != null">`meta_info` = #{metaInfo}, </if>
+			<if test="siteVersion != null">`site_version` = #{siteVersion} </if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="remove">
+		delete from sys_website where id = #{id}
+	</delete>
+</mapper>

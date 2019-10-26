@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>消息中心</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid" id="LAY-app-message">
+    <div class="layui-card">
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">
+                	全部消息
+                	<span th:class="${readyAll > 0}?'layui-badge'" th:text="${readyAll}" th:if="${readyAll >0}"></span>
+                </li>
+                <li>
+                	通知
+                	<span th:class="${notice > 0}?'layui-badge'" th:text="${notice}" th:if="${notice >0}"></span>
+                </li>
+                <li>
+                	私信
+                	<span th:class="${direct > 0}?'layui-badge'" th:text="${direct}" th:if="${direct >0}"></span>
+                </li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="all" data-events="del">删除</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="all" data-events="ready">标记已读</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="all" data-events="readyAll">全部已读</button>
+                    </div>
+                    <table id="LAY-app-message-all" lay-filter="LAY-app-message-all"></table>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="del">删除</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="ready">标记已读</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="readyAll">全部已读</button>
+                    </div>
+                    <table id="LAY-app-message-notice" lay-filter="LAY-app-message-notice"></table>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
+                    </div>
+                    <table id="LAY-app-message-direct" lay-filter="LAY-app-message-direct"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="titleTpl">
+  	{{#  if(d.msgType =="notice"){ }}
+              通知
+    {{#  } else if(d.msgType =="direct") { }}
+ 	   私信
+	{{#  } else { }}
+ 	   其他
+  {{#  } }}
+</script>
+
+<script type="text/html" id="titleTpl2">
+  	{{#  if(d.ready ==0){ }}
+              未读
+    {{#  } else if(d.ready ==1) { }}
+ 	   已读
+	{{#  } else { }}
+ 	   其他
+  {{#  } }}
+</script>
+
+<script src="/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index','table'],function(){
+    	 var $ = layui.$
+         ,admin = layui.admin
+         ,element = layui.element
+         ,router = layui.router();
+		 
+         
+         //定义操作按钮的事件
+         $(".LAY-app-message-btns .layui-btn").on("click",function() {
+             var e = $(this),
+             table = layui.table,
+             i = e.data("events"),
+             l = e.data("type");
+             console.info("events=="+i+",type=="+l);
+             //获取选择表数据
+             var checkStatus = table.checkStatus('LAY-app-message-all'); //LAY-app-message-all 即为基础参数 id 对应的值
+
+             console.log(checkStatus.data) //获取选中行的数据
+             console.log(checkStatus.data.length) //获取选中行数量，可作为是否有选中行的条件
+             console.log(checkStatus.isAll ) //表格是否全选
+         });
+    });
+    
+</script>
+
+
+<script>
+  layui.use('table', function(){
+  var table = layui.table,$ = layui.$,form = layui.form;
+  
+//渲染全部信息
+  table.render({
+     elem: '#LAY-app-message-all'  //table的Id
+    ,url:'/system/message/list'  //前期地址
+    ,toolbar: '#LAY-app-message-btns' //工具条
+    ,method: 'get' //请求方式
+    ,limit: 10 //默认采用10条
+    ,title: '全部信息' //表头
+    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+    ,cols: [
+      [
+       {type: 'checkbox', fixed: 'left'}
+      ,{field:'mid', title:'主键',  fixed: 'left',sort: true,width:100}
+      ,{field:'msgTitle', title:'信息内容',  }
+      ,{field:'msgType', title:'信息类型',  templet: '#titleTpl'}
+      ,{field:'ready', title:'状态', templet: '#titleTpl2'}
+      ,{field:'msgTime', title:'信息发布时间'}
+    	]
+      ]
+  	  ,page: true
+      ,request: {
+        	pageName: 'pageNum' //页码的参数名称，默认：page
+           ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+           
+      }
+  	  ,response: {
+  	      countName: 'total' //规定数据总数的字段名称，默认：count
+  	      ,dataName: 'data' //规定数据列表的字段名称，默认：data
+  	  } 
+  });
+  //渲染通知
+  table.render({
+	     elem: '#LAY-app-message-notice'  //table的Id
+	    ,url:'/system/message/list'  //前期地址
+	    ,toolbar: '#LAY-app-message-btns' //工具条
+	    ,method: 'get' //请求方式
+	    ,limit: 10 //默认采用10条
+	    ,title: '通知' //表头
+	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+	    ,cols: [
+	      [
+	       {type: 'checkbox', fixed: 'left'}
+	      ,{field:'mid', title:'主键',  fixed: 'left',sort: true,width:100}
+	      ,{field:'msgTitle', title:'信息内容',  }
+	      ,{field:'msgType', title:'信息类型',  templet: '#titleTpl'}
+	      ,{field:'ready', title:'状态', templet: '#titleTpl2'}
+	      ,{field:'msgTime', title:'信息发布时间'}
+	    	]
+	      ]
+	  	  ,page: true
+	      ,request: {
+	        	pageName: 'pageNum' //页码的参数名称，默认：page
+	           ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+	           
+	      }
+	  	  ,response: {
+	  	      countName: 'total' //规定数据总数的字段名称，默认：count
+	  	      ,dataName: 'data' //规定数据列表的字段名称，默认：data
+	  	  }
+	  	  ,where: {msgType: 'notice'} //如果无需传递额外参数，可不加该参数
+	  });
+  
+  //渲染私信
+  table.render({
+	     elem: '#LAY-app-message-direct'  //table的Id
+	    ,url:'/system/message/list'  //前期地址
+	    ,toolbar: '#LAY-app-message-btns' //工具条
+	    ,method: 'get' //请求方式
+	    ,limit: 10 //默认采用10条
+	    ,title: '私信' //表头
+	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+	    ,cols: [
+	      [
+	       {type: 'checkbox', fixed: 'left'}
+	      ,{field:'mid', title:'主键',  fixed: 'left',sort: true,width:100}
+	      ,{field:'msgTitle', title:'信息内容',  }
+	      ,{field:'msgType', title:'信息类型',  templet: '#titleTpl'}
+	      ,{field:'ready', title:'状态', templet: '#titleTpl2'}
+	      ,{field:'msgTime', title:'信息发布时间'}
+	    	]
+	      ]
+	  	  ,page: true
+	      ,request: {
+	        	pageName: 'pageNum' //页码的参数名称，默认：page
+	           ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+	           
+	      }
+	  	  ,response: {
+	  	      countName: 'total' //规定数据总数的字段名称，默认：count
+	  	      ,dataName: 'data' //规定数据列表的字段名称，默认：data
+	  	  }
+	  	  ,where: {msgType: 'direct'} //如果无需传递额外参数，可不加该参数
+	  });
+});
+</script>
+</body>
+</html>

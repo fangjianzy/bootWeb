@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>设置我的资料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">设置我的资料</div>
+                <div class="layui-card-body" pad15>
+
+                    <div class="layui-form" lay-filter="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">我的角色</label>
+                            <div class="layui-input-inline">
+                                <select name="role" lay-verify="">
+                                    <option value="1" selected>超级管理员</option>
+                                    <option value="2" disabled>普通管理员</option>
+                                    <option value="3" disabled>审核员</option>
+                                    <option value="4" disabled>编辑人员</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">当前角色不可更改为其它角色</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户名</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="username" th:value="${user.username}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">不可修改。一般用于后台登入名</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">昵称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="nickname" th:value="${user.name}" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">性别</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="sex" value="1" title="男" th:field="*{user.sex}"/>
+                                <input type="radio" name="sex" value="0" title="女" th:field="*{user.sex}"/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">头像</label>
+                            <div class="layui-input-inline">
+                                <input name="file" lay-type="file"  class="layui-upload-file" lay-verify="required" id="LAY_avatarSrc" placeholder="图片地址" th:value="${user.picId}" >
+                            </div>
+                            <div class="layui-input-inline layui-btn-container" style="width: auto;">
+                                <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+                                <button class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button >
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">手机</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="mobile" th:value="${user.mobile}" lay-verify="phone" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">邮箱</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="email" th:value="${user.email}" lay-verify="email" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="setmyinfo">确认修改</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重新填写</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'set','upload'],function(){
+    	var upload = layui.upload;
+    	//执行实例
+        var uploadInst = upload.render({
+          elem: '#LAY_avatarSrc' //绑定元素
+          ,url: '/common/sysFile/upload' //上传接口
+          ,before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+        	  layer.alert("开始上传");
+          }
+          ,done: function(res, index, upload){
+        	//上传回调
+            layer.closeAll('loading'); //关闭loading
+          }
+          ,accept: 'images' //允许上传的文件类型
+          ,size: 1024 //最大允许上传的文件大小kb
+          ,error: function(index, upload){
+        	//请求异常回调
+        	 layer.closeAll('loading'); //关闭loading
+           }
+        });
+    });
+
+</script>
+</body>
+</html>
