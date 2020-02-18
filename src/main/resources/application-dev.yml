@@ -1,5 +1,5 @@
 bootweb:
-  uploadPath: d:/var/uploaded_files/
+  uploadPath: d:/tmp/uploaded_files/
 logging:
   level:
     root: info
@@ -8,9 +8,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.180:3306/bootweb?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
-    username: root
-    password: 123456
+    url: jdbc:mysql://119.23.243.55:3306/bootweb?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+    username: xiaofan
+    password: xiaofan123
     initialSize: 1
     minIdle: 3
     maxActive: 20
@@ -34,7 +34,7 @@ spring:
     # 合并多个DruidDataSource的监控数据
     #useGlobalDataSourceStat: true
   redis:
-    host: 192.168.1.180
+    host: 192.168.16.120
     port: 6379
     password:
     # 连接超时时间（毫秒）

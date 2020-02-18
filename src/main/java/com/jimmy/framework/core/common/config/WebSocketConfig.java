@@ -39,8 +39,9 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) { //endPoint 注册协议节点,并映射指定的URl
         //注册一个名字为"endpointChat" 的endpoint,并指定 SockJS协议。   点对点-用
-        registry.addEndpoint("/webServer").withSockJS();  
-        registry.addEndpoint("/queueServer").withSockJS();//注册两个STOMP的endpoint，分别用于广播和点对点  
+    	//解决跨域问题
+        registry.addEndpoint("/webServer").setAllowedOrigins("*").withSockJS();  
+        registry.addEndpoint("/queueServer").setAllowedOrigins("*").withSockJS();//注册两个STOMP的endpoint，分别用于广播和点对点  
     }
 
 

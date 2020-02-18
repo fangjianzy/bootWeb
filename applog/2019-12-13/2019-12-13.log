@@ -1,0 +1,368 @@
+2019-12-13 18:35:16 -Starting BootWebApplication on fangjian with PID 16252 (started by fangjian in D:\project\个人项目\bootWeb)
+2019-12-13 18:35:16 -Running with Spring Boot v2.0.3.RELEASE, Spring v5.0.7.RELEASE
+2019-12-13 18:35:16 -The following profiles are active: dev
+2019-12-13 18:35:16 -Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@607fbe09: startup date [Fri Dec 13 18:35:16 CST 2019]; root of context hierarchy
+2019-12-13 18:35:18 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 18:35:19 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1b7742c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 18:35:19 -Bean 'shiroConfig' of type [com.jimmy.framework.core.system.config.ShiroConfig$$EnhancerBySpringCGLIB$$c6dc8119] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 18:35:20 -Bean 'userRealm' of type [com.jimmy.framework.core.system.shiro.UserRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 18:35:20 -Bean 'redisManager' of type [com.jimmy.framework.core.common.redis.shiro.RedisManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 18:35:20 -获取名称为: com.jimmy.framework.core.system.shiro.UserRealm.authorizationCache 的RedisCache实例
+2019-12-13 18:35:20 -Bean 'redisSessionDAO' of type [com.jimmy.framework.core.common.redis.shiro.RedisSessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 18:35:20 -Bean 'sessionDAO' of type [com.jimmy.framework.core.common.redis.shiro.RedisSessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 18:35:20 -Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 18:35:20 -Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 18:35:20 -Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 18:35:20 -Tomcat initialized with port(s): 8080 (http)
+2019-12-13 18:35:20 -Initializing ProtocolHandler ["http-nio-8080"]
+2019-12-13 18:35:20 -Starting service [Tomcat]
+2019-12-13 18:35:20 -Starting Servlet Engine: Apache Tomcat/8.5.31
+2019-12-13 18:35:20 -The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_221\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_221/bin/server;C:/Program Files/Java/jre1.8.0_221/bin;C:/Program Files/Java/jre1.8.0_221/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Java\jdk1.8.0_221\bin;D:\tools\gradle-4.10.2\bin;D:\maven\apache-maven-3.2.5\bin;D:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\TortoiseGit\bin;C:\Users\fangjian\AppData\Local\Microsoft\WindowsApps;C:\Users\fangjian\AppData\Roaming\npm;D:\tools\eclipse-jee-2019-09-R-win32-x86_64\eclipse;;.]
+2019-12-13 18:35:21 -Initializing Spring embedded WebApplicationContext
+2019-12-13 18:35:21 -Root WebApplicationContext: initialization completed in 4766 ms
+2019-12-13 18:35:21 -Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-12-13 18:35:21 -Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-12-13 18:35:21 -Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-12-13 18:35:21 -Mapping filter: 'requestContextFilter' to: [/*]
+2019-12-13 18:35:21 -Filter xssFilter was not registered (disabled)
+2019-12-13 18:35:21 -Mapping filter: 'webStatFilter' to urls: [/*]
+2019-12-13 18:35:21 -Mapping filter: 'corsFilter' to: [/*]
+2019-12-13 18:35:21 -Mapping filter: 'shiroFilterFactoryBean' to: [/*]
+2019-12-13 18:35:21 -Servlet statViewServlet mapped to [/druid/*]
+2019-12-13 18:35:21 -Servlet dispatcherServlet mapped to [/]
+2019-12-13 18:35:22 -{dataSource-1} inited
+2019-12-13 18:35:23 -ApplicationContext registed-->org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@607fbe09: startup date [Fri Dec 13 18:35:16 CST 2019]; root of context hierarchy
+2019-12-13 18:35:24 -Using default implementation for ThreadExecutor
+2019-12-13 18:35:24 -Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-12-13 18:35:24 -Quartz Scheduler v.2.2.1 created.
+2019-12-13 18:35:24 -RAMJobStore initialized.
+2019-12-13 18:35:24 -Scheduler meta-data: Quartz Scheduler (v2.2.1) 'schedulerFactoryBean' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-12-13 18:35:24 -Quartz scheduler 'schedulerFactoryBean' initialized from an externally provided properties instance.
+2019-12-13 18:35:24 -Quartz scheduler version: 2.2.1
+2019-12-13 18:35:24 -JobFactory set to: com.jimmy.framework.core.common.quartz.factory.JobFactory@336d28a1
+2019-12-13 18:35:24 -Initializing ExecutorService  'clientInboundChannelExecutor'
+2019-12-13 18:35:24 -Initializing ExecutorService  'clientOutboundChannelExecutor'
+2019-12-13 18:35:26 -Mapped "{[/common/dict/add],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.DictController.add()
+2019-12-13 18:35:26 -Mapped "{[/common/dict/remove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.DictController.remove(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/common/dict/batchRemove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.DictController.remove(java.lang.Long[])
+2019-12-13 18:35:26 -Mapped "{[/common/dict/update]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.DictController.update(com.jimmy.framework.core.common.entity.DictDO)
+2019-12-13 18:35:26 -Mapped "{[/common/dict/list],methods=[GET]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.DictController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/common/dict/save],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.DictController.save(com.jimmy.framework.core.common.entity.DictDO)
+2019-12-13 18:35:26 -Mapped "{[/common/dict/type],methods=[GET]}" onto public java.util.List<com.jimmy.framework.core.common.entity.DictDO> com.jimmy.framework.core.common.controller.DictController.listType()
+2019-12-13 18:35:26 -Mapped "{[/common/dict],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.DictController.dict()
+2019-12-13 18:35:26 -Mapped "{[/common/dict/list/{type}],methods=[GET]}" onto public java.util.List<com.jimmy.framework.core.common.entity.DictDO> com.jimmy.framework.core.common.controller.DictController.listByType(java.lang.String)
+2019-12-13 18:35:26 -Mapped "{[/common/dict/edit/{id}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.DictController.edit(java.lang.Long,org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/common/dict/add/{type}/{description}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.DictController.addD(org.springframework.ui.Model,java.lang.String,java.lang.String)
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile/add],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.FileController.add()
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile/remove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.FileController.remove(java.lang.Long,javax.servlet.http.HttpServletRequest)
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile/batchRemove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.FileController.remove(java.lang.Long[])
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile/update]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.FileController.update(com.jimmy.framework.core.common.entity.FileDO)
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile/list],methods=[GET]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.FileController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile/save],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.FileController.save(com.jimmy.framework.core.common.entity.FileDO)
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile/info/{id}]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.FileController.info(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile/edit],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.FileController.edit(java.lang.Long,org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.FileController.sysFile(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/common/sysFile/upload],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.FileController.upload(org.springframework.web.multipart.MultipartFile,javax.servlet.http.HttpServletRequest)
+2019-12-13 18:35:26 -Mapped "{[/common/generator/update],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.GeneratorController.update(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/common/generator/list],methods=[GET]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.GeneratorController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/common/generator/code/{tableName}]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.GeneratorController.code(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String) throws java.io.IOException
+2019-12-13 18:35:26 -Mapped "{[/common/generator],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.GeneratorController.generator()
+2019-12-13 18:35:26 -Mapped "{[/common/generator/edit],methods=[GET]}" onto public java.lang.String com.jimmy.framework.core.common.controller.GeneratorController.edit(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/common/generator/batchCode],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.GeneratorController.batchCode(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String) throws java.io.IOException
+2019-12-13 18:35:26 -Mapped "{[/common/job/add],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.JobController.add()
+2019-12-13 18:35:26 -Mapped "{[/common/job/remove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.JobController.remove(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/common/job/batchRemove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.JobController.remove(java.lang.Long[])
+2019-12-13 18:35:26 -Mapped "{[/common/job/update],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.JobController.update(com.jimmy.framework.core.common.entity.TaskDO)
+2019-12-13 18:35:26 -Mapped "{[/common/job/list],methods=[GET]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.JobController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/common/job/save],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.JobController.save(com.jimmy.framework.core.common.entity.TaskDO)
+2019-12-13 18:35:26 -Mapped "{[/common/job/info/{id}]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.JobController.info(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/common/job/edit/{id}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.JobController.edit(java.lang.Long,org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/common/job],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.JobController.taskScheduleJob()
+2019-12-13 18:35:26 -Mapped "{[/common/job/changeJobStatus],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.JobController.changeJobStatus(java.lang.Long,java.lang.String)
+2019-12-13 18:35:26 -Mapped "{[/common/log/remove],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.LogController.remove(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/common/log],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.LogController.log()
+2019-12-13 18:35:26 -Mapped "{[/common/log/list],methods=[GET]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.LogController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/common/log/batchRemove],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.controller.LogController.batchRemove(java.lang.Long[])
+2019-12-13 18:35:26 -Mapped "{[/common/websocket/queue],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.WebSocketController.queue(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/common/websocket/topic],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.common.controller.WebSocketController.topic(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/error]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.common.exception.MainsiteErrorController.handleError(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-12-13 18:35:26 -Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView com.jimmy.framework.core.common.exception.MainsiteErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/add/{deptId}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.DeptController.add(java.lang.Long,org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/remove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.DeptController.remove(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/batchRemove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.DeptController.remove(java.lang.Long[])
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/update]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.DeptController.update(com.jimmy.framework.core.system.entity.DeptDO)
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/list],methods=[GET]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.DeptController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/save],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.DeptController.save(com.jimmy.framework.core.system.entity.DeptDO)
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/tree],methods=[GET]}" onto public com.jimmy.framework.core.common.entity.Tree<com.jimmy.framework.core.system.entity.DeptDO> com.jimmy.framework.core.system.controller.DeptController.tree()
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/edit/{deptId}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.DeptController.edit(java.lang.Long,org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.DeptController.dept()
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/treeView],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.DeptController.treeView(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/system/sysDept/listTree],methods=[GET]}" onto java.util.List<com.jimmy.framework.core.common.entity.Tree<com.jimmy.framework.core.system.entity.DeptDO>> com.jimmy.framework.core.system.controller.DeptController.deptTree(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/emailsite],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.EmailController.websiteString(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/console/index],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.LoginController.index(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/main],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.LoginController.main(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/index2],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.LoginController.index2(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/home/demo/{filename}]}" onto public java.lang.String com.jimmy.framework.core.system.controller.LoginController.html(java.lang.String)
+2019-12-13 18:35:26 -Mapped "{[/login],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.LoginController.login(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/logout],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.LoginController.logout()
+2019-12-13 18:35:26 -Mapped "{[/sys/regAction]}" onto public java.lang.String com.jimmy.framework.core.system.controller.LoginController.regAction(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/forgetAction]}" onto public java.lang.String com.jimmy.framework.core.system.controller.LoginController.forgetAction(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/login],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.LoginController.ajaxLogin(java.lang.String,java.lang.String)
+2019-12-13 18:35:26 -Mapped "{[/ || ],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.LoginController.welcome(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/menu/add/{pId}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.MenuController.add(org.springframework.ui.Model,java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/sys/menu/remove],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.MenuController.remove(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/sys/menu/update],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.MenuController.update(com.jimmy.framework.core.system.entity.MenuDO)
+2019-12-13 18:35:26 -Mapped "{[/sys/menu/list]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.MenuController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/sys/menu/save],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.MenuController.save(com.jimmy.framework.core.system.entity.MenuDO)
+2019-12-13 18:35:26 -Mapped "{[/sys/menu/tree],methods=[GET]}" onto com.jimmy.framework.core.common.entity.Tree<com.jimmy.framework.core.system.entity.MenuDO> com.jimmy.framework.core.system.controller.MenuController.tree()
+2019-12-13 18:35:26 -Mapped "{[/sys/menu/tree/{roleId}],methods=[GET]}" onto com.jimmy.framework.core.common.entity.Tree<com.jimmy.framework.core.system.entity.MenuDO> com.jimmy.framework.core.system.controller.MenuController.tree(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/sys/menu/edit/{id}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.MenuController.edit(org.springframework.ui.Model,java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/sys/menu/permission/tree],methods=[GET]}" onto java.util.List<com.jimmy.framework.core.common.entity.Tree<com.jimmy.framework.core.system.entity.MenuDO>> com.jimmy.framework.core.system.controller.MenuController.permissionTree()
+2019-12-13 18:35:26 -Mapped "{[/sys/menu],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.MenuController.menu(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/system/message/add],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.MessageController.add()
+2019-12-13 18:35:26 -Mapped "{[/system/message/remove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.MessageController.remove(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/system/message/batchRemove],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.MessageController.remove(java.lang.Long[])
+2019-12-13 18:35:26 -Mapped "{[/system/message/update]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.MessageController.update(com.jimmy.framework.core.system.domain.MessageDO)
+2019-12-13 18:35:26 -Mapped "{[/system/message/list],methods=[GET]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.MessageController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/system/message/save],methods=[POST]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.MessageController.save(com.jimmy.framework.core.system.domain.MessageDO)
+2019-12-13 18:35:26 -Mapped "{[/system/message/edit/{mid}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.MessageController.edit(java.lang.Long,org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/system/message],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.MessageController.Message(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/role/add],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.RoleController.add()
+2019-12-13 18:35:26 -Mapped "{[/sys/role/update],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.RoleController.update(com.jimmy.framework.core.system.entity.RoleDO)
+2019-12-13 18:35:26 -Mapped "{[/sys/role/list],methods=[GET]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.RoleController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/sys/role/remove],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.RoleController.save(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/sys/role/save],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.RoleController.save(com.jimmy.framework.core.system.entity.RoleDO)
+2019-12-13 18:35:26 -Mapped "{[/sys/role/batchRemove],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.RoleController.batchRemove(java.lang.Long[])
+2019-12-13 18:35:26 -Mapped "{[/sys/role],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.RoleController.role()
+2019-12-13 18:35:26 -Mapped "{[/sys/role/edit/{id}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.RoleController.edit(java.lang.Long,org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/online/list]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.SessionController.list()
+2019-12-13 18:35:26 -Mapped "{[/sys/online/forceLogout/{sessionId}]}" onto public com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.SessionController.forceLogout(java.lang.String,org.springframework.web.servlet.mvc.support.RedirectAttributes)
+2019-12-13 18:35:26 -Mapped "{[/sys/online],methods=[GET]}" onto public java.lang.String com.jimmy.framework.core.system.controller.SessionController.online()
+2019-12-13 18:35:26 -Mapped "{[/sys/online/sessionList]}" onto public java.util.Collection<org.apache.shiro.session.Session> com.jimmy.framework.core.system.controller.SessionController.sessionList()
+2019-12-13 18:35:26 -Mapped "{[/sys/tree],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.TreeController.tree(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/tree/deptTree],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.TreeController.deptTree(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/exit],methods=[POST]}" onto boolean com.jimmy.framework.core.system.controller.UserController.exit(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/add],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.UserController.add(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/remove],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.UserController.remove(java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/update],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.UserController.update(com.jimmy.framework.core.system.entity.UserDO)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/check/{id}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.UserController.check(org.springframework.ui.Model,java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/list],methods=[GET]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.UserController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/save],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.UserController.save(com.jimmy.framework.core.system.entity.UserDO)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/batchRemove],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.UserController.batchRemove(java.lang.Long[])
+2019-12-13 18:35:26 -Mapped "{[/sys/user/tree],methods=[GET]}" onto public com.jimmy.framework.core.common.entity.Tree<com.jimmy.framework.core.system.entity.DeptDO> com.jimmy.framework.core.system.controller.UserController.tree()
+2019-12-13 18:35:26 -Mapped "{[/sys/user],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.UserController.user(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/edit/{id}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.UserController.edit(org.springframework.ui.Model,java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/treeView],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.UserController.treeView()
+2019-12-13 18:35:26 -Mapped "{[/sys/user/uploadImg],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.UserController.uploadImg(org.springframework.web.multipart.MultipartFile,java.lang.String,javax.servlet.http.HttpServletRequest)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/updatePeronal],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.UserController.updatePeronal(com.jimmy.framework.core.system.entity.UserDO)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/adminResetPwd],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.UserController.adminResetPwd(com.jimmy.framework.core.system.vo.UserVO)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/personal],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.UserController.personal(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/resetPwd],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.UserController.resetPwd(com.jimmy.framework.core.system.vo.UserVO)
+2019-12-13 18:35:26 -Mapped "{[/sys/user/resetPwd],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.UserController.resetPwd(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/website/add],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.WebSiteController.add(org.springframework.ui.Model,com.jimmy.framework.core.system.entity.WebSite)
+2019-12-13 18:35:26 -Mapped "{[/sys/website/edit],methods=[POST]}" onto com.jimmy.framework.core.common.utils.R com.jimmy.framework.core.system.controller.WebSiteController.edit(org.springframework.ui.Model,com.jimmy.framework.core.system.entity.WebSite)
+2019-12-13 18:35:26 -Mapped "{[/sys/website],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.WebSiteController.websiteString(org.springframework.ui.Model)
+2019-12-13 18:35:26 -Mapped "{[/sys/website/findByid/{id}],methods=[GET]}" onto java.lang.String com.jimmy.framework.core.system.controller.WebSiteController.findByid(org.springframework.ui.Model,java.lang.Long)
+2019-12-13 18:35:26 -Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2019-12-13 18:35:26 -Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2019-12-13 18:35:26 -Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2019-12-13 18:35:26 -Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2019-12-13 18:35:27 -Initializing ExecutorService  'messageBrokerTaskScheduler'
+2019-12-13 18:35:27 -Mapped URL path [/webServer/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2019-12-13 18:35:27 -Mapped URL path [/queueServer/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2019-12-13 18:35:27 -Initializing ExecutorService  'brokerChannelExecutor'
+2019-12-13 18:35:27 -Mapped "{[/queue],messageType=[MESSAGE]}" onto public void com.jimmy.framework.core.common.controller.SubController.queue(com.jimmy.framework.core.common.utils.ws.ReceiveMessage)
+2019-12-13 18:35:27 -Mapped "{[/subscribe],messageType=[MESSAGE]}" onto public void com.jimmy.framework.core.common.controller.SubController.subscribe(com.jimmy.framework.core.common.utils.ws.ReceiveMessage)
+2019-12-13 18:35:27 -Mapped "{[/p2p/{fromUser}/{toUser}],messageType=[MESSAGE]}" onto public void com.jimmy.framework.core.common.controller.SubController.queueFromUserToUser(com.jimmy.framework.core.common.utils.ws.ReceiveMessage,java.lang.String,java.lang.String)
+2019-12-13 18:35:27 -No configuration found. Configuring ehcache from ehcache-failsafe.xml  found in the classpath: jar:file:/D:/maven/maven-repository/net/sf/ehcache/ehcache/2.10.5/ehcache-2.10.5.jar!/ehcache-failsafe.xml
+2019-12-13 18:35:28 -Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-13 18:35:28 -Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@607fbe09: startup date [Fri Dec 13 18:35:16 CST 2019]; root of context hierarchy
+2019-12-13 18:35:28 -Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-13 18:35:28 -Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-13 18:35:28 -Mapped URL path [/files/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-13 18:35:28 -Detected @ExceptionHandler methods in BDExceptionHandler
+2019-12-13 18:35:29 -[THYMELEAF][main] Template Mode 'LEGACYHTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-12-13 18:35:31 -Registering beans for JMX exposure on startup
+2019-12-13 18:35:31 -Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-12-13 18:35:31 -Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2019-12-13 18:35:31 -Starting beans in phase 2147483647
+2019-12-13 18:35:31 -Context refreshed
+2019-12-13 18:35:31 -Found 1 custom documentation plugin(s)
+2019-12-13 18:35:31 -Scanning for api listing references
+2019-12-13 18:35:31 -Generating unique operation named: removeUsingPOST_1
+2019-12-13 18:35:31 -Generating unique operation named: addUsingGET_1
+2019-12-13 18:35:32 -Generating unique operation named: editUsingGET_1
+2019-12-13 18:35:32 -Generating unique operation named: listUsingGET_1
+2019-12-13 18:35:32 -Generating unique operation named: removeUsingPOST_2
+2019-12-13 18:35:32 -Generating unique operation named: removeUsingPOST_3
+2019-12-13 18:35:32 -Generating unique operation named: saveUsingPOST_1
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingGET_1
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingHEAD_1
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingPOST_1
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingPUT_1
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingPATCH_1
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingDELETE_1
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingOPTIONS_1
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingTRACE_1
+2019-12-13 18:35:32 -Generating unique operation named: addUsingGET_2
+2019-12-13 18:35:32 -Generating unique operation named: editUsingGET_2
+2019-12-13 18:35:32 -Generating unique operation named: listUsingGET_2
+2019-12-13 18:35:32 -Generating unique operation named: removeUsingPOST_4
+2019-12-13 18:35:32 -Generating unique operation named: removeUsingPOST_5
+2019-12-13 18:35:32 -Generating unique operation named: saveUsingPOST_2
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingGET_2
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingHEAD_2
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingPOST_2
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingPUT_2
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingPATCH_2
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingDELETE_2
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingOPTIONS_2
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingTRACE_2
+2019-12-13 18:35:32 -Generating unique operation named: editUsingGET_3
+2019-12-13 18:35:32 -Generating unique operation named: listUsingGET_3
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingPOST_3
+2019-12-13 18:35:32 -Generating unique operation named: addUsingGET_3
+2019-12-13 18:35:32 -Generating unique operation named: editUsingGET_4
+2019-12-13 18:35:32 -Generating unique operation named: infoUsingGET_1
+2019-12-13 18:35:32 -Generating unique operation named: infoUsingHEAD_1
+2019-12-13 18:35:32 -Generating unique operation named: infoUsingPOST_1
+2019-12-13 18:35:32 -Generating unique operation named: infoUsingPUT_1
+2019-12-13 18:35:32 -Generating unique operation named: infoUsingPATCH_1
+2019-12-13 18:35:32 -Generating unique operation named: infoUsingDELETE_1
+2019-12-13 18:35:32 -Generating unique operation named: infoUsingOPTIONS_1
+2019-12-13 18:35:32 -Generating unique operation named: infoUsingTRACE_1
+2019-12-13 18:35:32 -Generating unique operation named: listUsingGET_4
+2019-12-13 18:35:32 -Generating unique operation named: removeUsingPOST_6
+2019-12-13 18:35:32 -Generating unique operation named: removeUsingPOST_7
+2019-12-13 18:35:32 -Generating unique operation named: saveUsingPOST_3
+2019-12-13 18:35:32 -Generating unique operation named: updateUsingPOST_4
+2019-12-13 18:35:32 -Generating unique operation named: listUsingGET_5
+2019-12-13 18:35:32 -Generating unique operation named: removeUsingPOST_8
+2019-12-13 18:35:32 -Generating unique operation named: welcomeUsingGET_1
+2019-12-13 18:35:32 -Generating unique operation named: addUsingGET_4
+2019-12-13 18:35:32 -Generating unique operation named: editUsingGET_5
+2019-12-13 18:35:32 -Generating unique operation named: listUsingGET_6
+2019-12-13 18:35:32 -Generating unique operation named: removeUsingPOST_9
+2019-12-13 18:35:33 -Generating unique operation named: saveUsingPOST_4
+2019-12-13 18:35:33 -Generating unique operation named: treeUsingGET_1
+2019-12-13 18:35:33 -Generating unique operation named: treeUsingGET_2
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingPOST_5
+2019-12-13 18:35:33 -Generating unique operation named: addUsingGET_5
+2019-12-13 18:35:33 -Generating unique operation named: editUsingGET_6
+2019-12-13 18:35:33 -Generating unique operation named: listUsingGET_7
+2019-12-13 18:35:33 -Generating unique operation named: removeUsingPOST_10
+2019-12-13 18:35:33 -Generating unique operation named: removeUsingPOST_11
+2019-12-13 18:35:33 -Generating unique operation named: saveUsingPOST_5
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingGET_3
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingHEAD_3
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingPOST_6
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingPUT_3
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingPATCH_3
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingDELETE_3
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingOPTIONS_3
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingTRACE_3
+2019-12-13 18:35:33 -Generating unique operation named: addUsingGET_6
+2019-12-13 18:35:33 -Generating unique operation named: batchRemoveUsingPOST_1
+2019-12-13 18:35:33 -Generating unique operation named: editUsingGET_7
+2019-12-13 18:35:33 -Generating unique operation named: listUsingGET_8
+2019-12-13 18:35:33 -Generating unique operation named: saveUsingPOST_6
+2019-12-13 18:35:33 -Generating unique operation named: saveUsingPOST_7
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingPOST_7
+2019-12-13 18:35:33 -Generating unique operation named: listUsingGET_9
+2019-12-13 18:35:33 -Generating unique operation named: listUsingHEAD_1
+2019-12-13 18:35:33 -Generating unique operation named: listUsingPOST_1
+2019-12-13 18:35:33 -Generating unique operation named: listUsingPUT_1
+2019-12-13 18:35:33 -Generating unique operation named: listUsingPATCH_1
+2019-12-13 18:35:33 -Generating unique operation named: listUsingDELETE_1
+2019-12-13 18:35:33 -Generating unique operation named: listUsingOPTIONS_1
+2019-12-13 18:35:33 -Generating unique operation named: listUsingTRACE_1
+2019-12-13 18:35:33 -Generating unique operation named: deptTreeUsingGET_1
+2019-12-13 18:35:33 -Generating unique operation named: treeUsingGET_3
+2019-12-13 18:35:33 -Generating unique operation named: addUsingGET_7
+2019-12-13 18:35:33 -Generating unique operation named: batchRemoveUsingPOST_2
+2019-12-13 18:35:33 -Generating unique operation named: editUsingGET_8
+2019-12-13 18:35:33 -Generating unique operation named: listUsingGET_10
+2019-12-13 18:35:33 -Generating unique operation named: removeUsingPOST_12
+2019-12-13 18:35:33 -Generating unique operation named: saveUsingPOST_8
+2019-12-13 18:35:33 -Generating unique operation named: treeUsingGET_4
+2019-12-13 18:35:33 -Generating unique operation named: treeViewUsingGET_1
+2019-12-13 18:35:33 -Generating unique operation named: updateUsingPOST_8
+2019-12-13 18:35:33 -Generating unique operation named: addUsingGET_8
+2019-12-13 18:35:33 -Generating unique operation named: websiteStringUsingGET_1
+2019-12-13 18:35:33 -Starting Quartz Scheduler now
+2019-12-13 18:35:33 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED started.
+2019-12-13 18:35:33 -Starting...
+2019-12-13 18:35:33 -BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2019-12-13 18:35:33 -Started.
+2019-12-13 18:35:33 -Starting ProtocolHandler ["http-nio-8080"]
+2019-12-13 18:35:33 -Using a shared selector for servlet write/read
+2019-12-13 18:35:33 -Tomcat started on port(s): 8080 (http) with context path ''
+2019-12-13 18:35:33 -Started BootWebApplication in 18.191 seconds (JVM running for 19.016)
+2019-12-13 18:35:34 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED started.
+2019-12-13 18:36:05 -Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-12-13 18:36:05 -FrameworkServlet 'dispatcherServlet': initialization started
+2019-12-13 18:36:05 -FrameworkServlet 'dispatcherServlet': initialization completed in 37 ms
+2019-12-13 18:36:05 -Enabling session validation scheduler...
+2019-12-13 18:36:05 -请求地址 : http://localhost:8080/
+2019-12-13 18:36:05 -HTTP METHOD : GET
+2019-12-13 18:36:05 -CLASS_METHOD : com.jimmy.framework.core.system.controller.LoginController.welcome
+2019-12-13 18:36:05 -参数 : [{}]
+2019-12-13 18:36:05 -耗时 : 3
+2019-12-13 18:36:05 -返回值 : redirect:/login
+2019-12-13 18:36:05 -请求地址 : http://localhost:8080/login
+2019-12-13 18:36:05 -HTTP METHOD : GET
+2019-12-13 18:36:05 -CLASS_METHOD : com.jimmy.framework.core.system.controller.LoginController.login
+2019-12-13 18:36:05 -参数 : [{}]
+2019-12-13 18:36:06 -耗时 : 169
+2019-12-13 18:36:06 -返回值 : login
+2019-12-13 18:36:07 -请求地址 : http://localhost:8080/login
+2019-12-13 18:36:07 -HTTP METHOD : POST
+2019-12-13 18:36:07 -CLASS_METHOD : com.jimmy.framework.core.system.controller.LoginController.ajaxLogin
+2019-12-13 18:36:07 -参数 : [admin, 111111]
+2019-12-13 18:36:07 -耗时 : 142
+2019-12-13 18:36:07 -返回值 : {msg=登录成功, code=0, data={access_token=ebb01047-a7da-408e-95a4-ede73804f110}}
+2019-12-13 18:36:07 -More than one TaskExecutor bean found within the context, and none is named 'taskExecutor'. Mark one of them as primary or name it 'taskExecutor' (possibly as an alias) in order to use it for async processing: [clientInboundChannelExecutor, clientOutboundChannelExecutor, brokerChannelExecutor, messageBrokerTaskScheduler]
+2019-12-13 18:36:09 -请求地址 : http://localhost:8080/console/index
+2019-12-13 18:36:09 -HTTP METHOD : GET
+2019-12-13 18:36:09 -CLASS_METHOD : com.jimmy.framework.core.system.controller.LoginController.index
+2019-12-13 18:36:09 -参数 : [{}]
+2019-12-13 18:36:09 -耗时 : 295
+2019-12-13 18:36:09 -返回值 : index_v1
+2019-12-13 18:36:09 -请求地址 : http://localhost:8080/home/demo/homepage2
+2019-12-13 18:36:09 -HTTP METHOD : GET
+2019-12-13 18:36:09 -CLASS_METHOD : com.jimmy.framework.core.system.controller.LoginController.html
+2019-12-13 18:36:09 -参数 : [homepage2]
+2019-12-13 18:36:09 -耗时 : 11
+2019-12-13 18:36:09 -返回值 : /home/demo/homepage2
+2019-12-13 18:36:13 -请求地址 : http://localhost:8080/system/message
+2019-12-13 18:36:13 -HTTP METHOD : GET
+2019-12-13 18:36:13 -CLASS_METHOD : com.jimmy.framework.core.system.controller.MessageController.Message
+2019-12-13 18:36:13 -参数 : [{}]
+2019-12-13 18:36:13 -耗时 : 42
+2019-12-13 18:36:13 -返回值 : system/message/message
+2019-12-13 18:36:14 -请求地址 : http://localhost:8080/system/message/list
+2019-12-13 18:36:14 -HTTP METHOD : GET
+2019-12-13 18:36:14 -CLASS_METHOD : com.jimmy.framework.core.system.controller.MessageController.list
+2019-12-13 18:36:14 -参数 : [{pageNum=1, pageSize=10, access_token=undefined}]
+2019-12-13 18:36:14 -请求地址 : http://localhost:8080/system/message/list
+2019-12-13 18:36:14 -HTTP METHOD : GET
+2019-12-13 18:36:14 -CLASS_METHOD : com.jimmy.framework.core.system.controller.MessageController.list
+2019-12-13 18:36:14 -参数 : [{pageNum=1, pageSize=10, msgType=notice, access_token=undefined}]
+2019-12-13 18:36:14 -请求地址 : http://localhost:8080/system/message/list
+2019-12-13 18:36:14 -HTTP METHOD : GET
+2019-12-13 18:36:14 -CLASS_METHOD : com.jimmy.framework.core.system.controller.MessageController.list
+2019-12-13 18:36:14 -参数 : [{pageNum=1, pageSize=10, msgType=direct, access_token=undefined}]
+2019-12-13 18:36:14 -耗时 : 45
+2019-12-13 18:36:14 -返回值 : {msg=操作成功, total=2, code=0, data=[com.jimmy.framework.core.system.domain.MessageDO@43cdb361, com.jimmy.framework.core.system.domain.MessageDO@691418b3]}
+2019-12-13 18:36:14 -耗时 : 49
+2019-12-13 18:36:14 -返回值 : {msg=操作成功, total=1, code=0, data=[com.jimmy.framework.core.system.domain.MessageDO@4cade9a5]}
+2019-12-13 18:36:14 -耗时 : 48
+2019-12-13 18:36:14 -返回值 : {msg=操作成功, total=1, code=0, data=[com.jimmy.framework.core.system.domain.MessageDO@59ff5d3e]}
+2019-12-13 18:36:27 -WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 1 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(1)-CONNECTED(1)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 6, active threads = 0, queued tasks = 0, completed tasks = 6], outboundChannelpool size = 1, active threads = 0, queued tasks = 0, completed tasks = 1], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 2, completed tasks = 4]

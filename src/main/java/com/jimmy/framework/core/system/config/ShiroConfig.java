@@ -79,6 +79,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/sys/regAction","anon");//注册
         filterChainDefinitionMap.put("/sys/forgetAction","anon");//忘记密码
+        filterChainDefinitionMap.put("/queueServer/**","anon");//websocket
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/fonts/**", "anon");
