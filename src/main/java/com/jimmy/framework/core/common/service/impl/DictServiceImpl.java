@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ import com.jimmy.framework.core.system.entity.UserDO;
 
 @Service
 public class DictServiceImpl implements DictService {
+	
+	private static final Logger log= LoggerFactory.getLogger(DictServiceImpl.class);
+
     @Autowired
     private DictDao dictDao;
 
@@ -105,5 +110,11 @@ public class DictServiceImpl implements DictService {
         param.put("type", type);
         return dictDao.list(param);
     }
+
+	@Override
+	public String threadDemo(String logmsg) {
+		log.info("----多线程处理业务完毕--->"+logmsg);
+		return logmsg;
+	}
 
 }

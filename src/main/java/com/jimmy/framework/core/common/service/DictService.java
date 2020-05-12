@@ -52,5 +52,10 @@ public interface DictService {
 	 * @return
 	 */
 	List<DictDO> listByType(String type);
-
+	/**
+	 * 小demo
+	 * @param key
+	 * @return
+	 */
+	String threadDemo(String log);
 }

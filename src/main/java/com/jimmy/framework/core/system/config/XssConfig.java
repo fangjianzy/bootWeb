@@ -8,7 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
-
+/**
+ * xss过滤拦截器
+ * @author fangjian
+ *
+ */
 @Configuration
 public class XssConfig{
 
